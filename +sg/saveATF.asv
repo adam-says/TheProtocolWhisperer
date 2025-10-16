@@ -1,0 +1,33 @@
+%function saveATF(filename, time, stim)
+
+filename = 'test.txt';
+time = NOISETIME;
+stim = NOISEWAVE;
+
+header = 0;
+D = {'ATF' 1.0 '' ''
+    0 4 '' ''
+    '""' "" "" ""};
+
+h1 = {'ATF' '1.0'};
+h2 = {0 4};
+h3 = {'""' '""' '""' '""'};
+
+values = cell(numel(time),4);
+
+for i = 1:numel(time)
+    values{i,1} = time(i);
+    values{i,2} = stim(i);
+    values{i,3} = stim(i);
+    values{i,4} = stim(i);
+end
+fido = fopen(filename, 'w');
+fprintf(fido, '%s %s\n', h1{:});
+fprintf(fido, '%d %d\n', h2{:});
+fprintf(fido, '%s %s %s %s\n', h3{:});
+for k1 = 1:size(values,1)
+    fprintf(fido, '%f %f %f %f\n', values{k1,:});
+end
+fclose(fido);
+
+%end
