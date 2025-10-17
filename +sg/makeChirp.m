@@ -1,5 +1,5 @@
 %% Chirp
-function [time, stim, fs] = makeChirp(RHEOBASE, cond)
+function [time, stim, fs] = makeChirp(RHEOBASE, relamp)
 
 % Parameters
 fs = 10000;
@@ -7,15 +7,9 @@ NSamples = 50 * fs;
 freq_start = 1;
 freq_end = 1000;
 
-%cond = 'sub'; %sub - subthreshold; supra - suprathreshold
 %freq_space = 'log'; %TODO: allow choice between linear and log freq sweep
+amp = relamp * RHEOBASE;
 
-switch cond
-    case 'sub'
-        amp = 0.8 * RHEOBASE;
-    case 'supra'
-        amp = 1.5 * RHEOBASE;
-end
 
 F = [];
 CHIRP = [];
