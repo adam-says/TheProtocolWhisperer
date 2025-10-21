@@ -12,7 +12,7 @@ fs = 20000; % Sampling rate
 wait_time = 30; % Wait time between sweeps, in s
 
 dt = 1/fs; % seconds per sample 
-StopTime = 50; % seconds 
+StopTime = 30; % seconds 
 t = (0:dt:StopTime)'; % seconds 
 
 
