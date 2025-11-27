@@ -1,9 +1,10 @@
-function [time, stim, fs] = makeSinoisoidal(S,RHEO,sineAmp,noisy)
+function [time, stim, fs] = makeSinoisoidal(S,I0,sineAmp,noisy)
 % TMP: these will become function inputs
 %S = 2; % SD of noise
 %noisy = 0; % Switch to add noise to sine, 0 - no; 1 - yes;
 %RHEO = 120;
 %sineAmp = 1.5; % Amplitude of the sinusoidal, as a percent of the Rheobase
+sineAmp = sineAmp / 2;
 
 
 % Parameters
@@ -21,7 +22,7 @@ stim = [zeros(1,1*fs)]; % Initial one second wait
 
 for i = 1:numel(frequencies)
     F = frequencies(i); % Sine wave frequency (hertz) 
-    epoch = sineAmp*RHEO*sin(2*pi*F*t);
+    epoch = I0 + sineAmp*I0*sin(2*pi*F*t);
     epoch = epoch';
     if noisy
         epoch = sg.makeNoise(fs,epoch,S);
