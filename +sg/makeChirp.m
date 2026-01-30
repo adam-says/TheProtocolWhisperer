@@ -3,9 +3,10 @@ function [time, stim, fs] = makeChirp(RHEOBASE, relamp)
 
 % Parameters
 fs = 10000;
-NSamples = 50 * fs;
-freq_start = 1;
-freq_end = 1000;
+totalTime = 50; % in s
+NSamples = totalTime * fs;
+freq_start = 0.1;
+freq_end = 50;
 
 %freq_space = 'log'; %TODO: allow choice between linear and log freq sweep
 amp = relamp * RHEOBASE;
